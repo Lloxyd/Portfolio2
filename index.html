@@ -85,6 +85,21 @@
         img {
             max-width: 100%;
         }
+
+        .why-me .video-wrapper {
+            width: min(100%, 1000px);
+            margin: 2rem auto 0;
+            padding: 0 1rem;
+        }
+
+        .why-me video {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #000;
+            border-radius: 14px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
     </style>
 </head>
 <body>
@@ -99,7 +114,8 @@
                 <a href="#about" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">About</a>
                 <a href="#projects" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Projects</a>
                 <a href="#services" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">Skills</a>
-                <a href="#contact" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Contact</a>
+                <a href="#why-me" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Why Me</a>
+                <a href="#contact" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">Contact</a>
             </div>
 
             <button
@@ -120,6 +136,7 @@
                 <a href="#about" class="nav-link" onclick="closeDropdown()">About</a>
                 <a href="#projects" class="nav-link" onclick="closeDropdown()">Projects</a>
                 <a href="#services" class="nav-link" onclick="closeDropdown()">Skills</a>
+                <a href="#why-me" class="nav-link" onclick="closeDropdown()">Why Me</a>
                 <a href="#contact" class="nav-link" onclick="closeDropdown()">Contact</a>
 
                 <button type="button" class="cancel" aria-label="Close navigation menu" onclick="closeDropdown()">
@@ -325,6 +342,22 @@
                         <h3 class="topic">Systems</h3>
                         <p>Linux, Unix, and Windows administration, environment setup, and repeatable deployment pipelines.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY ME VIDEO -->
+        <section class="why-me" id="why-me">
+            <div class="content">
+                <div class="title" data-aos="fade-up" data-aos-duration="1200">
+                    <span>Why Me</span>
+                </div>
+
+                <div class="video-wrapper" data-aos="fade-up" data-aos-duration="1500">
+                    <video controls playsinline preload="metadata">
+                        <source src="Why Me.mp4" type="video/mp4">
+                        Your browser does not support MP4 video playback.
+                    </video>
                 </div>
             </div>
         </section>
