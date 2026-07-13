@@ -3,379 +3,2122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lloyd Musa's technical ePortfolio featuring IT automation, software projects, skills, and experience.">
+    <meta
+        name="description"
+        content="Lloyd Musa's technical ePortfolio featuring IT automation, software projects, professional experience, skills, outcomes, and reflective learning."
+    >
+    <meta name="theme-color" content="#0b1220">
     <title>Lloyd Musa | Technical ePortfolio</title>
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- AOS animation library -->
+    <!-- Animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 
     <!-- Font Awesome icons -->
     <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         referrerpolicy="no-referrer"
     >
 
-    <!-- Small functional fallbacks; the main visual design remains in style.css -->
     <style>
-        html { scroll-behavior: smooth; }
+        :root {
+            --page: #f4f7fb;
+            --surface: #ffffff;
+            --surface-soft: #eef4ff;
+            --surface-dark: #0b1220;
+            --text: #172033;
+            --muted: #5f6b7a;
+            --primary: #1d5fd1;
+            --primary-dark: #13479f;
+            --accent: #55d6be;
+            --border: #dfe6ef;
+            --success: #147d64;
+            --shadow-sm: 0 8px 24px rgba(15, 31, 56, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 31, 56, 0.14);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --max-width: 1180px;
+            --nav-height: 76px;
+        }
 
-        .hamburg,
-        .cancel {
-            background: transparent;
-            border: 0;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 18px);
+        }
+
+        body {
+            min-width: 320px;
+            background: var(--page);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+            text-rendering: optimizeLegibility;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        img,
+        video {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
             color: inherit;
-            cursor: pointer;
+        }
+
+        button,
+        input,
+        textarea {
             font: inherit;
         }
 
-        .dropdown {
-            transform: translateY(-120%);
-            transition: transform 0.3s ease;
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .dropdown.open {
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid rgba(29, 95, 209, 0.35);
+            outline-offset: 4px;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 10001;
+            transform: translateY(-150%);
+            border-radius: 8px;
+            background: #ffffff;
+            color: var(--surface-dark);
+            font-weight: 800;
+            padding: 0.75rem 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
             transform: translateY(0);
         }
 
-        .cv-btn,
-        .view-btn {
+        .scroll-progress {
+            position: fixed;
+            inset: 0 auto auto 0;
+            z-index: 10000;
+            width: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #84a9ff);
+        }
+
+        .container {
+            width: min(calc(100% - 2rem), var(--max-width));
+            margin-inline: auto;
+        }
+
+        section {
+            position: relative;
+            padding: 6.5rem 0;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 0.7rem;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .section-kicker::before {
+            width: 34px;
+            height: 3px;
+            border-radius: 999px;
+            background: var(--accent);
+            content: "";
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 2.8rem;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 0.8rem;
+            color: var(--surface-dark);
+            font-size: clamp(2rem, 4.2vw, 3.25rem);
+            line-height: 1.08;
+            letter-spacing: -0.045em;
+        }
+
+        .section-heading p {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            width: fit-content;
+            border: 1px solid rgba(85, 214, 190, 0.35);
+            border-radius: 999px;
+            background: rgba(85, 214, 190, 0.1);
+            color: #baf7eb;
+            font-size: 0.83rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            padding: 0.5rem 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .eyebrow i {
+            color: var(--accent);
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.6rem;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            min-height: 48px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 850;
+            line-height: 1;
+            padding: 0.92rem 1.15rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 12px 30px rgba(29, 95, 209, 0.28);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 15px 34px rgba(29, 95, 209, 0.34);
+        }
+
+        .btn-secondary {
+            border-color: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.38);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .btn-light {
+            border-color: var(--border);
+            background: #ffffff;
+            color: var(--surface-dark);
+        }
+
+        .btn-light:hover {
+            border-color: #bdc9d9;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Navigation */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            height: var(--nav-height);
+            border-bottom: 1px solid rgba(223, 230, 239, 0.82);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--surface-dark);
+            font-size: 1.15rem;
+            font-weight: 950;
+            letter-spacing: -0.025em;
             text-decoration: none;
         }
 
-        #contact-form-overlay {
+        .brand-mark {
+            display: grid;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), #6c8cff);
+            color: #ffffff;
+            place-items: center;
+            box-shadow: 0 8px 20px rgba(29, 95, 209, 0.25);
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link {
+            position: relative;
+            border-radius: 9px;
+            color: #425067;
+            font-size: 0.92rem;
+            font-weight: 800;
+            padding: 0.65rem 0.72rem;
+            text-decoration: none;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--surface-soft);
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: #ffffff;
+            color: var(--surface-dark);
+            cursor: pointer;
+            place-items: center;
+        }
+
+        .mobile-nav {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 1rem;
+            left: 1rem;
+            display: grid;
+            visibility: hidden;
+            gap: 0.25rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            padding: 0.7rem;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        }
+
+        .mobile-nav.open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav .nav-link {
+            padding: 0.85rem 0.9rem;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            min-height: calc(100vh - var(--nav-height));
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(85, 214, 190, 0.17), transparent 28%),
+                radial-gradient(circle at 85% 65%, rgba(76, 122, 255, 0.25), transparent 34%),
+                linear-gradient(145deg, #08101d 0%, #0b1730 52%, #102449 100%);
+            color: #ffffff;
+            place-items: center;
+        }
+
+        .hero::after {
+            position: absolute;
+            inset: auto -8rem -13rem auto;
+            width: 28rem;
+            height: 28rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            content: "";
+            box-shadow:
+                0 0 0 80px rgba(255, 255, 255, 0.025),
+                0 0 0 160px rgba(255, 255, 255, 0.018);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            align-items: center;
+            grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+            gap: clamp(2rem, 6vw, 5.4rem);
+            padding: 4.5rem 0;
+        }
+
+        .hero h1 {
+            max-width: 780px;
+            margin: 1.1rem 0 0.9rem;
+            font-size: clamp(3rem, 7vw, 5.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.065em;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .typewriter {
+            min-height: 2.1rem;
+            margin-bottom: 1.25rem;
+            color: #c9d9f7;
+            font-size: clamp(1.18rem, 2.4vw, 1.65rem);
+            font-weight: 800;
+        }
+
+        .typewriter-text {
+            color: #ffffff;
+        }
+
+        .typewriter-cursor {
+            color: var(--accent);
+            animation: blink 0.9s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-copy {
+            max-width: 700px;
+            color: #b9c6da;
+            font-size: clamp(1rem, 1.6vw, 1.13rem);
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 1.35rem;
+        }
+
+        .hero-socials a {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+            place-items: center;
+        }
+
+        .hero-socials a:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-2px);
+        }
+
+        .portrait-shell {
+            position: relative;
+            width: min(100%, 420px);
+            margin-inline: auto;
+        }
+
+        .portrait-frame {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 38px 95px rgba(0, 0, 0, 0.34);
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .availability-card {
+            position: absolute;
+            right: -1.2rem;
+            bottom: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            max-width: 255px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+            background: rgba(8, 16, 29, 0.88);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.26);
+            padding: 0.9rem 1rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .availability-dot {
+            flex: 0 0 auto;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 7px rgba(85, 214, 190, 0.14);
+        }
+
+        .availability-card strong,
+        .availability-card span {
+            display: block;
+        }
+
+        .availability-card strong {
+            font-size: 0.88rem;
+        }
+
+        .availability-card span {
+            color: #aebbd0;
+            font-size: 0.76rem;
+        }
+
+        /* Snapshot */
+        .snapshot {
+            z-index: 3;
+            margin-top: -2.2rem;
+            padding: 0 0 2rem;
+        }
+
+        .snapshot-grid {
+            display: grid;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            box-shadow: var(--shadow-lg);
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .snapshot-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            min-height: 126px;
+            padding: 1.35rem;
+        }
+
+        .snapshot-card + .snapshot-card {
+            border-left: 1px solid var(--border);
+        }
+
+        .snapshot-icon {
+            display: grid;
+            flex: 0 0 auto;
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: var(--surface-soft);
+            color: var(--primary);
+            place-items: center;
+        }
+
+        .snapshot-card strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--surface-dark);
+            font-size: 0.94rem;
+        }
+
+        .snapshot-card p {
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            align-items: start;
+            grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+            gap: 2.3rem;
+        }
+
+        .about-copy,
+        .about-panel {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-copy {
+            padding: clamp(1.45rem, 4vw, 2.3rem);
+        }
+
+        .about-copy p + p {
+            margin-top: 1rem;
+        }
+
+        .about-copy p {
+            color: #4d596a;
+        }
+
+        .about-copy strong {
+            color: var(--surface-dark);
+        }
+
+        .about-panel {
+            padding: 1.4rem;
+        }
+
+        .about-panel h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .strength-list {
+            display: grid;
+            gap: 0.8rem;
+            list-style: none;
+        }
+
+        .strength-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfcff;
+            padding: 0.9rem;
+        }
+
+        .strength-list i {
+            margin-top: 0.25rem;
+            color: var(--success);
+        }
+
+        .strength-list strong {
+            display: block;
+            margin-bottom: 0.18rem;
+            color: var(--surface-dark);
+            font-size: 0.9rem;
+        }
+
+        .strength-list span {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        /* Experience */
+        .experience {
+            background: #ffffff;
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 1.15rem;
+        }
+
+        .timeline::before {
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            left: 22px;
+            width: 2px;
+            background: #d9e2f0;
+            content: "";
+        }
+
+        .timeline-item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 46px minmax(0, 1fr);
+            gap: 1rem;
+        }
+
+        .timeline-marker {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            width: 46px;
+            height: 46px;
+            border: 5px solid #ffffff;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 0 0 1px var(--border);
+            place-items: center;
+        }
+
+        .timeline-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+            padding: 1.35rem;
+        }
+
+        .timeline-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-head h3 {
+            color: var(--surface-dark);
+            font-size: 1.18rem;
+        }
+
+        .timeline-head p {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 850;
+        }
+
+        .date-pill {
+            flex: 0 0 auto;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            color: var(--primary-dark);
+            font-size: 0.76rem;
+            font-weight: 850;
+            padding: 0.45rem 0.7rem;
+        }
+
+        .timeline-card ul {
+            display: grid;
+            gap: 0.45rem;
+            color: var(--muted);
+            padding-left: 1.2rem;
+        }
+
+        /* Projects */
+        .projects {
+            background:
+                linear-gradient(rgba(244, 247, 251, 0.94), rgba(244, 247, 251, 0.94)),
+                radial-gradient(circle at top right, rgba(29, 95, 209, 0.14), transparent 34%);
+        }
+
+        .project-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            display: grid;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+            grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .project-visual {
+            position: relative;
+            min-height: 100%;
+            overflow: hidden;
+            background: #dfe8f7;
+        }
+
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            min-height: 410px;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .project-card:hover .project-visual img {
+            transform: scale(1.025);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            display: grid;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 14px;
+            background: rgba(8, 16, 29, 0.82);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 900;
+            backdrop-filter: blur(8px);
+            place-items: center;
+        }
+
+        .project-body {
+            display: flex;
+            flex-direction: column;
+            padding: clamp(1.45rem, 4vw, 2.1rem);
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            border: 1px solid #d8e5fb;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            color: var(--primary-dark);
+            font-size: 0.74rem;
+            font-weight: 850;
+            padding: 0.38rem 0.62rem;
+        }
+
+        .project-body h3 {
+            margin-bottom: 0.55rem;
+            color: var(--surface-dark);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        .project-summary {
+            margin-bottom: 1.15rem;
+            color: var(--muted);
+        }
+
+        .evidence-grid {
+            display: grid;
+            gap: 0.75rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .evidence-item {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfcff;
+            padding: 0.92rem;
+        }
+
+        .evidence-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 0.35rem;
+            color: var(--surface-dark);
+            font-size: 0.83rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .evidence-item h4 i {
+            color: var(--primary);
+        }
+
+        .evidence-item p {
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.55;
+        }
+
+        .reflection-box {
+            margin-top: 0.75rem;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 14px 14px 0;
+            background: #f1fbf8;
+            padding: 0.95rem 1rem;
+        }
+
+        .reflection-box h4 {
+            margin-bottom: 0.3rem;
+            color: #105d4d;
+            font-size: 0.83rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .reflection-box p {
+            color: #41645d;
+            font-size: 0.88rem;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.15rem;
+        }
+
+        /* Skills */
+        .skills {
+            background: #ffffff;
+        }
+
+        .skill-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .skill-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+            padding: 1.35rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .skill-card:hover {
+            border-color: #bdcce0;
+            transform: translateY(-3px);
+        }
+
+        .skill-icon {
+            display: grid;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 0.9rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--surface-soft), #e8f9f5);
+            color: var(--primary);
+            font-size: 1.15rem;
+            place-items: center;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 0.45rem;
+            color: var(--surface-dark);
+            font-size: 1.05rem;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Reflection */
+        .learning-reflection {
+            overflow: hidden;
+            background: var(--surface-dark);
+            color: #ffffff;
+        }
+
+        .learning-reflection::before {
+            position: absolute;
+            top: -170px;
+            right: -120px;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(29, 95, 209, 0.22);
+            content: "";
+            filter: blur(6px);
+        }
+
+        .learning-reflection .section-heading h2 {
+            color: #ffffff;
+        }
+
+        .learning-reflection .section-heading p {
+            color: #b7c5da;
+        }
+
+        .reflection-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .reflection-card {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1.35rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .reflection-card .number {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 0.9rem;
+            border-radius: 12px;
+            background: rgba(85, 214, 190, 0.13);
+            color: var(--accent);
+            font-weight: 900;
+            place-items: center;
+        }
+
+        .reflection-card h3 {
+            margin-bottom: 0.45rem;
+            font-size: 1.08rem;
+        }
+
+        .reflection-card p {
+            color: #b7c5da;
+            font-size: 0.9rem;
+        }
+
+        /* Video */
+        .video-grid {
+            display: grid;
+            align-items: start;
+            grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+            gap: 1.5rem;
+        }
+
+        .video-card,
+        .video-content-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .video-card {
+            overflow: hidden;
+        }
+
+        .video-card video {
+            width: 100%;
+            min-height: 340px;
+            background: #000000;
+            object-fit: contain;
+        }
+
+        .video-caption {
+            color: var(--muted);
+            font-size: 0.83rem;
+            padding: 0.9rem 1rem;
+        }
+
+        .video-content-card {
+            padding: 1.35rem;
+        }
+
+        .video-content-card h3 {
+            margin-bottom: 0.7rem;
+            color: var(--surface-dark);
+        }
+
+        .video-checklist {
+            display: grid;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+            list-style: none;
+        }
+
+        .video-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .video-checklist i {
+            margin-top: 0.25rem;
+            color: var(--success);
+        }
+
+        .transcript {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfcff;
+            padding: 0.85rem 0.95rem;
+        }
+
+        .transcript summary {
+            cursor: pointer;
+            color: var(--surface-dark);
+            font-weight: 850;
+        }
+
+        .transcript p {
+            margin-top: 0.75rem;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* Contact */
+        .contact {
+            padding-top: 4rem;
+        }
+
+        .contact-panel {
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at right top, rgba(85, 214, 190, 0.2), transparent 30%),
+                linear-gradient(135deg, #0b1220, #123068);
+            box-shadow: var(--shadow-lg);
+            color: #ffffff;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 2rem;
+            padding: clamp(1.7rem, 5vw, 3rem);
+        }
+
+        .contact-panel h2 {
+            margin-bottom: 0.55rem;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+        }
+
+        .contact-panel p {
+            max-width: 650px;
+            color: #bbc9dc;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0 2.5rem;
+            color: var(--muted);
+            font-size: 0.87rem;
+            text-align: center;
+        }
+
+        /* Contact modal */
+        .modal-overlay {
             position: fixed;
             inset: 0;
-            z-index: 9999;
+            z-index: 10000;
             display: none;
             align-items: center;
             justify-content: center;
+            background: rgba(3, 9, 18, 0.76);
             padding: 1rem;
-            background: rgba(0, 0, 0, 0.7);
         }
 
-        #contact-form-overlay.open {
+        .modal-overlay.open {
             display: flex;
         }
 
         .contact-form {
-            width: min(100%, 600px);
-            max-height: 90vh;
+            width: min(100%, 620px);
+            max-height: 92vh;
             overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            background: #ffffff;
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.38);
+            padding: clamp(1.25rem, 4vw, 2rem);
         }
 
-        .modal-open {
-            overflow: hidden;
+        .form-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-head h2 {
+            color: var(--surface-dark);
+            font-size: 1.6rem;
+        }
+
+        .form-head p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .close-modal {
+            display: grid;
+            flex: 0 0 auto;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #ffffff;
+            color: var(--surface-dark);
+            cursor: pointer;
+            place-items: center;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .field {
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            color: var(--surface-dark);
+            font-size: 0.83rem;
+            font-weight: 850;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            border: 1px solid #cfd9e7;
+            border-radius: 10px;
+            background: #fbfcff;
+            color: var(--text);
+            padding: 0.8rem 0.85rem;
+        }
+
+        .field textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: var(--primary);
         }
 
         .form-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.7rem;
             margin-top: 1rem;
         }
 
-        img {
-            max-width: 100%;
-        }
-
-        .why-me .video-wrapper {
-            width: min(100%, 1000px);
-            margin: 2rem auto 0;
-            padding: 0 1rem;
-        }
-
-        .why-me video {
-            display: block;
-            width: 100%;
-            height: auto;
-            background: #000;
+        .back-to-top {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 800;
+            display: grid;
+            visibility: hidden;
+            width: 46px;
+            height: 46px;
+            border: 0;
             border-radius: 14px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background: var(--primary);
+            box-shadow: 0 12px 28px rgba(29, 95, 209, 0.32);
+            color: #ffffff;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            place-items: center;
+        }
+
+        .back-to-top.visible {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: grid;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy-wrap {
+                order: 2;
+            }
+
+            .portrait-shell {
+                order: 1;
+                width: min(76vw, 370px);
+            }
+
+            .hero h1 {
+                max-width: 850px;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-visual img {
+                min-height: 310px;
+                max-height: 430px;
+            }
+
+            .skill-grid,
+            .reflection-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            section {
+                padding: 5rem 0;
+            }
+
+            .hero-grid {
+                padding: 3rem 0 4.5rem;
+            }
+
+            .availability-card {
+                right: 0.65rem;
+                bottom: 0.75rem;
+            }
+
+            .snapshot-grid,
+            .skill-grid,
+            .reflection-grid,
+            .evidence-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .snapshot-card + .snapshot-card {
+                border-top: 1px solid var(--border);
+                border-left: 0;
+            }
+
+            .timeline-head,
+            .contact-panel {
+                align-items: flex-start;
+                grid-template-columns: 1fr;
+            }
+
+            .date-pill {
+                width: fit-content;
+            }
+
+            .contact-panel .button-row {
+                margin-top: 0;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: min(calc(100% - 1.2rem), var(--max-width));
+            }
+
+            .hero h1 {
+                font-size: clamp(2.75rem, 15vw, 4rem);
+            }
+
+            .portrait-shell {
+                width: 100%;
+            }
+
+            .availability-card {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                max-width: none;
+                margin-top: 0.8rem;
+            }
+
+            .button-row,
+            .project-actions,
+            .form-actions {
+                display: grid;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <nav aria-label="Primary navigation">
-        <div class="nav-container">
-            <a class="logo" href="#home" data-aos="zoom-in" data-aos-duration="1500" aria-label="Go to home section">
-                <span>Lloyd</span>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <a class="brand" href="#home" aria-label="Go to the home section">
+                <span class="brand-mark" aria-hidden="true">LM</span>
+                <span>Lloyd Musa</span>
             </a>
 
-            <div class="links desktop-links">
-                <a href="#home" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Home</a>
-                <a href="#about" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">About</a>
-                <a href="#projects" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Projects</a>
-                <a href="#services" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">Skills</a>
-                <a href="#why-me" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Why Me</a>
-                <a href="#contact" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">Contact</a>
-            </div>
+            <nav class="desktop-nav" aria-label="Primary navigation">
+                <a class="nav-link active" href="#home">Home</a>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#experience">Experience</a>
+                <a class="nav-link" href="#projects">Projects</a>
+                <a class="nav-link" href="#skills">Skills</a>
+                <a class="nav-link" href="#reflection">Reflection</a>
+                <a class="nav-link" href="#why-me">Video</a>
+                <a class="nav-link" href="#contact">Contact</a>
+            </nav>
 
             <button
+                class="menu-toggle"
+                id="menu-toggle"
                 type="button"
-                class="hamburg"
                 aria-label="Open navigation menu"
-                aria-controls="mobile-menu"
+                aria-controls="mobile-nav"
                 aria-expanded="false"
-                onclick="toggleDropdown()"
             >
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>
+
+            <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#experience">Experience</a>
+                <a class="nav-link" href="#projects">Projects</a>
+                <a class="nav-link" href="#skills">Skills</a>
+                <a class="nav-link" href="#reflection">Reflection</a>
+                <a class="nav-link" href="#why-me">Video</a>
+                <a class="nav-link" href="#contact">Contact</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="dropdown" id="mobile-menu" aria-hidden="true">
-            <div class="links">
-                <a href="#home" class="nav-link" onclick="closeDropdown()">Home</a>
-                <a href="#about" class="nav-link" onclick="closeDropdown()">About</a>
-                <a href="#projects" class="nav-link" onclick="closeDropdown()">Projects</a>
-                <a href="#services" class="nav-link" onclick="closeDropdown()">Skills</a>
-                <a href="#why-me" class="nav-link" onclick="closeDropdown()">Why Me</a>
-                <a href="#contact" class="nav-link" onclick="closeDropdown()">Contact</a>
-
-                <button type="button" class="cancel" aria-label="Close navigation menu" onclick="closeDropdown()">
-                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <main>
+    <main id="main-content">
         <!-- HOME -->
-        <section id="home">
-            <div class="main-container">
-                <div class="image" data-aos="zoom-out" data-aos-duration="3000">
-                    <img src="1626126c-b782-4e81-8a4a-65793966e8e0.jpg" alt="Professional portrait of Lloyd Musa">
-                </div>
-
-                <div class="content">
-                    <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">
-                        Hey, I'm <span>Lloyd</span>
-                    </h1>
-
-                    <div class="typewriter" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900">
-                        I'm <span class="typewriter-text" aria-live="polite"></span>
+        <section class="hero" id="home" aria-labelledby="home-title">
+            <div class="container hero-grid">
+                <div class="hero-copy-wrap" data-aos="fade-right" data-aos-duration="900">
+                    <div class="eyebrow">
+                        <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                        Technical ePortfolio
                     </div>
 
-                    <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">
-                        Computer Science student at York University and IT Analyst at Metergy Solutions.
-                        I specialize in PowerShell automation, Microsoft 365 deployment, and enterprise systems
-                        integration—turning repetitive manual work into reliable, scalable scripts.
+                    <h1 id="home-title">Hey, I’m <span>Lloyd.</span></h1>
+
+                    <div class="typewriter" aria-label="Professional roles">
+                        I’m <span class="typewriter-text">a Software Developer</span><span class="typewriter-cursor" aria-hidden="true">|</span>
+                    </div>
+
+                    <p class="hero-copy">
+                        I am an Honours Computer Science student at York University and an IT Analyst Co-op at
+                        Metergy Solutions. I build practical automation, deployment, and software solutions that
+                        reduce repetitive work, improve reliability, and make technical processes easier to support.
                     </p>
 
-                    <div class="social-links" aria-label="Social media links">
+                    <div class="button-row">
+                        <a class="btn btn-primary" href="#projects">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                            Explore My Projects
+                        </a>
+                        <a
+                            class="btn btn-secondary"
+                            href="Lloyd_s_Resume__Metergy_.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                            View CV
+                        </a>
+                    </div>
+
+                    <div class="hero-socials" aria-label="Professional profiles">
                         <a
                             href="https://github.com/Lloxyd"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Visit Lloyd's GitHub profile"
-                            data-aos="fade-up"
-                            data-aos-duration="1500"
-                            data-aos-delay="1300"
+                            aria-label="Visit Lloyd Musa's GitHub profile"
                         >
                             <i class="fa-brands fa-github" aria-hidden="true"></i>
                         </a>
-
                         <a
                             href="https://www.linkedin.com/in/lloydmusa/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="Visit Lloyd's LinkedIn profile"
-                            data-aos="fade-up"
-                            data-aos-duration="1500"
-                            data-aos-delay="1400"
+                            aria-label="Visit Lloyd Musa's LinkedIn profile"
                         >
-                            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                         </a>
                     </div>
+                </div>
 
-                    <div class="button" data-aos="zoom-in-right" data-aos-duration="1500" data-aos-delay="800">
-                        <a class="cv-btn" href="Lloyd_s_Resume__Metergy_.pdf" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
-                            View CV
-                        </a>
+                <div class="portrait-shell" data-aos="zoom-in" data-aos-duration="900">
+                    <div class="portrait-frame">
+                        <img
+                            src="1626126c-b782-4e81-8a4a-65793966e8e0.jpg"
+                            alt="Professional portrait of Lloyd Musa"
+                        >
+                    </div>
+                    <div class="availability-card">
+                        <span class="availability-dot" aria-hidden="true"></span>
+                        <div>
+                            <strong>Open to meaningful technical work</strong>
+                            <span>Software, IT, automation, and engineering opportunities</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- QUICK SNAPSHOT -->
+        <aside class="snapshot" aria-label="Professional snapshot">
+            <div class="container snapshot-grid">
+                <div class="snapshot-card">
+                    <div class="snapshot-icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
+                    <div>
+                        <strong>Current Role</strong>
+                        <p>IT Analyst Co-op at Metergy Solutions, focused on automation and enterprise support.</p>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+                    <div>
+                        <strong>Education</strong>
+                        <p>Honours B.Sc. Computer Science at York University, expected graduation in 2027.</p>
+                    </div>
+                </div>
+                <div class="snapshot-card">
+                    <div class="snapshot-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
+                    <div>
+                        <strong>Core Strength</strong>
+                        <p>Turning repetitive technical processes into documented, reusable, and reliable solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
         <!-- ABOUT -->
-        <section class="about" id="about">
-            <div class="content">
-                <div class="title" data-aos="fade-up" data-aos-duration="1200">
-                    <span>About Me</span>
+        <section id="about" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">About Me</span>
+                    <h2 id="about-title">A problem-solver who connects software, systems, and people.</h2>
+                    <p>
+                        My technical growth has been shaped by classroom learning, hands-on IT work, research,
+                        mentorship, and collaborative projects.
+                    </p>
                 </div>
 
-                <div class="about-wrapper">
-                    <div class="about-text" data-aos="fade-right" data-aos-duration="1500">
+                <div class="about-grid">
+                    <article class="about-copy" data-aos="fade-right">
                         <p>
-                            I'm an Honours B.Sc. Computer Science student at York University, expected to graduate
-                            in 2027, and I currently work as an IT Analyst Co-op at Metergy Solutions. My focus is
-                            enterprise automation: I build defensive PowerShell scripts, automate Microsoft 365
-                            deployments, integrate vendor APIs, and design ITSM workflows that reduce manual
-                            overhead and improve reliability across Windows environments.
+                            I am an <strong>Honours B.Sc. Computer Science student at York University</strong> and an
+                            <strong>IT Analyst Co-op at Metergy Solutions</strong>. My current work focuses on enterprise
+                            automation, including defensive PowerShell scripting, Microsoft 365 deployment, API-based
+                            information retrieval, IT service-management workflows, and repeatable Windows support
+                            processes.
                         </p>
+                        <p>
+                            I approach technical work by first understanding the user’s problem, then designing a
+                            solution that is clear, testable, and maintainable. I value strong documentation because a
+                            successful solution should not only work once—it should be understandable and reusable by
+                            the next person who supports it.
+                        </p>
+                        <p>
+                            Previously, I mentored eight lab assistants at K2i Academy within York University’s
+                            Lassonde School of Engineering. That experience strengthened my communication, leadership,
+                            and teaching skills while reinforcing the importance of adapting technical explanations to
+                            different audiences.
+                        </p>
+                    </article>
 
-                        <p style="margin-top: 15px;">
-                            Previously, I mentored eight lab assistants at K2i Academy within the Lassonde School of
-                            Engineering, delivering STEM instruction aligned with the United Nations Sustainable
-                            Development Goals. I enjoy solving complex problems and documenting repeatable solutions
-                            that help teams work more efficiently.
-                        </p>
-                    </div>
+                    <aside class="about-panel" data-aos="fade-left" aria-label="Professional strengths">
+                        <h3>How I Work</h3>
+                        <ul class="strength-list">
+                            <li>
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                <div>
+                                    <strong>User-centred problem solving</strong>
+                                    <span>I begin with the real operational need instead of jumping directly into code.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Reliable implementation</strong>
+                                    <span>I include validation, error handling, testing, and clear output where possible.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Clear communication</strong>
+                                    <span>I document technical decisions and explain complex work in accessible language.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Continuous reflection</strong>
+                                    <span>I review what worked, identify limitations, and apply the learning to future work.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="experience" id="experience" aria-labelledby="experience-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Experience</span>
+                    <h2 id="experience-title">Applying technical knowledge in real environments.</h2>
+                    <p>
+                        These experiences demonstrate how I use technology, communication, and structured problem
+                        solving in professional and educational settings.
+                    </p>
+                </div>
+
+                <div class="timeline">
+                    <article class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-marker"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-head">
+                                <div>
+                                    <h3>IT Analyst Co-op</h3>
+                                    <p>Metergy Solutions</p>
+                                </div>
+                                <span class="date-pill">Current</span>
+                            </div>
+                            <ul>
+                                <li>Develop automation and deployment workflows for enterprise Windows environments.</li>
+                                <li>Use PowerShell, Microsoft 365 administration, APIs, and ITSM practices to support repeatable operations.</li>
+                                <li>Document implementation steps, validation checks, and support procedures for maintainability.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-marker"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div>
+                        <div class="timeline-card">
+                            <div class="timeline-head">
+                                <div>
+                                    <h3>STEM Mentor and Lab Leadership</h3>
+                                    <p>K2i Academy, Lassonde School of Engineering</p>
+                                </div>
+                                <span class="date-pill">Previous</span>
+                            </div>
+                            <ul>
+                                <li>Mentored eight lab assistants and supported the delivery of hands-on STEM learning activities.</li>
+                                <li>Adapted technical explanations for learners with different levels of confidence and prior knowledge.</li>
+                                <li>Strengthened leadership, teamwork, facilitation, and professional communication skills.</li>
+                            </ul>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS -->
-        <section class="projects" id="projects">
-            <div class="content">
-                <div class="title" data-aos="fade-up" data-aos-duration="1200">
-                    <span>My Projects</span>
+        <section class="projects" id="projects" aria-labelledby="projects-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Projects and Reflection</span>
+                    <h2 id="projects-title">Projects explained through goals, tools, skills, outcomes, and learning.</h2>
+                    <p>
+                        Each project includes both visual evidence and written context so the purpose, process, result,
+                        and learning experience are clear to the viewer.
+                    </p>
                 </div>
 
-                <div class="boxes">
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                        <div class="project-img">
-                            <img src="images.png" alt="Office 365 deployment automation project" loading="lazy">
+                <div class="project-list">
+                    <!-- PROJECT 1 -->
+                    <article class="project-card" data-aos="fade-up">
+                        <div class="project-visual">
+                            <img
+                                src="images.png"
+                                alt="Visual representing automated Microsoft 365 application deployment"
+                                loading="lazy"
+                            >
+                            <span class="project-number" aria-hidden="true">01</span>
                         </div>
-                        <h3 class="topic">Office 365 Deployment Automation</h3>
-                        <p>
-                            A modular PowerShell framework that silently downloads, installs, and validates
-                            standardized Microsoft 365 applications across enterprise Windows endpoints.
-                        </p>
-                        <a class="view-btn" href="https://github.com/Lloxyd" target="_blank" rel="noopener noreferrer">View</a>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="tag">PowerShell</span>
+                                <span class="tag">Microsoft 365</span>
+                                <span class="tag">Enterprise Automation</span>
+                            </div>
+                            <h3>Office 365 Deployment Automation</h3>
+                            <p class="project-summary">
+                                A modular PowerShell solution designed to download, install, and validate a standardized
+                                set of Microsoft 365 applications across Windows endpoints with minimal manual effort.
+                            </p>
+
+                            <div class="evidence-grid">
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Project Goal</h4>
+                                    <p>Create a repeatable deployment process that reduces inconsistent manual installation steps.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Tools Used</h4>
+                                    <p>PowerShell, Windows administration, Microsoft 365 installers, command-line utilities, and logging.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-seedling" aria-hidden="true"></i> Skills Learned</h4>
+                                    <p>Defensive scripting, validation logic, reusable functions, silent installation, and technical documentation.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Outcome</h4>
+                                    <p>Produced a structured workflow that can install approved applications and confirm whether deployment succeeded.</p>
+                                </div>
+                            </div>
+
+                            <div class="reflection-box">
+                                <h4>Reflection on the Learning Experience</h4>
+                                <p>
+                                    This project taught me that automation must account for failure, not only the ideal
+                                    path. I improved the solution by thinking about permissions, missing files, partial
+                                    installations, and clear feedback for the technician running the script. I would next
+                                    expand the reporting and add more automated tests for different endpoint conditions.
+                                </p>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    class="btn btn-primary"
+                                    href="https://github.com/Lloxyd"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    View Code Portfolio
+                                </a>
+                            </div>
+                        </div>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                        <div class="project-img">
-                            <img src="images-2.png" alt="Lenovo warranty lookup project" loading="lazy">
+                    <!-- PROJECT 2 -->
+                    <article class="project-card" data-aos="fade-up">
+                        <div class="project-visual">
+                            <img
+                                src="images-2.png"
+                                alt="Visual representing a Lenovo warranty lookup and asset tracking tool"
+                                loading="lazy"
+                            >
+                            <span class="project-number" aria-hidden="true">02</span>
                         </div>
-                        <h3 class="topic">Lenovo Warranty Lookup</h3>
-                        <p>
-                            A PowerShell tool that queries the Lenovo warranty API by serial number, parses JSON
-                            responses, and exports structured CSV records for asset-compliance tracking.
-                        </p>
-                        <a class="view-btn" href="https://github.com/Lloxyd" target="_blank" rel="noopener noreferrer">View</a>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="tag">API Integration</span>
+                                <span class="tag">JSON</span>
+                                <span class="tag">Asset Management</span>
+                            </div>
+                            <h3>Lenovo Warranty Lookup</h3>
+                            <p class="project-summary">
+                                A PowerShell tool that accepts device serial numbers, queries Lenovo warranty data,
+                                transforms the returned information, and prepares structured records for review.
+                            </p>
+
+                            <div class="evidence-grid">
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Project Goal</h4>
+                                    <p>Make warranty information easier to retrieve and organize during device and asset reviews.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Tools Used</h4>
+                                    <p>PowerShell, REST API requests, JSON parsing, serial-number input, CSV export, and error handling.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-seedling" aria-hidden="true"></i> Skills Learned</h4>
+                                    <p>API authentication concepts, response validation, data transformation, structured export, and input checking.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Outcome</h4>
+                                    <p>Created a reusable lookup process that turns raw warranty responses into information that is easier to compare.</p>
+                                </div>
+                            </div>
+
+                            <div class="reflection-box">
+                                <h4>Reflection on the Learning Experience</h4>
+                                <p>
+                                    This project strengthened my understanding of how external services can return
+                                    incomplete or unexpected data. I learned to validate both the request and the API
+                                    response before exporting results. In a future version, I would add a more polished
+                                    interface and clearer batch-processing progress for large device lists.
+                                </p>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    class="btn btn-primary"
+                                    href="https://github.com/Lloxyd"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    View Code Portfolio
+                                </a>
+                            </div>
+                        </div>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                        <div class="project-img">
-                            <img src="Unknown.png" alt="OpsFlow project" loading="lazy">
+                    <!-- PROJECT 3 -->
+                    <article class="project-card" data-aos="fade-up">
+                        <div class="project-visual">
+                            <img
+                                src="Unknown.png"
+                                alt="Visual of the OpsFlow service-desk workflow project"
+                                loading="lazy"
+                            >
+                            <span class="project-number" aria-hidden="true">03</span>
                         </div>
-                        <h3 class="topic">OpsFlow</h3>
-                        <p>
-                            A service-desk triage board that organizes incident queues, prioritizes ticket tiers,
-                            and documents handoffs to improve backlog visibility and response times.
-                        </p>
-                        <a class="view-btn" href="https://github.com/Lloxyd" target="_blank" rel="noopener noreferrer">View</a>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="tag">ITSM</span>
+                                <span class="tag">Workflow Design</span>
+                                <span class="tag">Service Operations</span>
+                            </div>
+                            <h3>OpsFlow</h3>
+                            <p class="project-summary">
+                                A service-desk workflow concept that organizes incident queues, clarifies priority
+                                levels, and supports more consistent ticket ownership, escalation, and handoff practices.
+                            </p>
+
+                            <div class="evidence-grid">
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Project Goal</h4>
+                                    <p>Improve visibility into service-desk work and make ticket prioritization and handoffs easier to follow.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Tools Used</h4>
+                                    <p>ITSM process mapping, Jira-style workflow concepts, queue organization, documentation, and interface planning.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-seedling" aria-hidden="true"></i> Skills Learned</h4>
+                                    <p>Requirements analysis, workflow modelling, operational prioritization, user-centred design, and process communication.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Outcome</h4>
+                                    <p>Developed a clearer operating model for viewing queue status, responsibility, urgency, and next actions.</p>
+                                </div>
+                            </div>
+
+                            <div class="reflection-box">
+                                <h4>Reflection on the Learning Experience</h4>
+                                <p>
+                                    OpsFlow showed me that process design is as important as technical implementation.
+                                    A workflow can fail when categories are unclear or when users do not understand what
+                                    happens next. I learned to simplify labels, make ownership visible, and design around
+                                    how technicians actually make decisions during busy support periods.
+                                </p>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    class="btn btn-primary"
+                                    href="https://github.com/Lloxyd"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                    View Project Portfolio
+                                </a>
+                            </div>
+                        </div>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                        <div class="project-img">
-                            <img src="424d9f09-31ca-4778-9a9e-42845c5ef453.png" alt="SpectacularAR Hack the North project" loading="lazy">
+                    <!-- PROJECT 4 -->
+                    <article class="project-card" data-aos="fade-up">
+                        <div class="project-visual">
+                            <img
+                                src="424d9f09-31ca-4778-9a9e-42845c5ef453.png"
+                                alt="Visual of SpectacularAR, a Hack the North augmented-reality music visualizer"
+                                loading="lazy"
+                            >
+                            <span class="project-number" aria-hidden="true">04</span>
                         </div>
-                        <h3 class="topic">SpectacularAR — Hack the North</h3>
-                        <p>
-                            A voice-driven augmented-reality music visualizer built with Lens Studio, the Gemini API,
-                            and Snap 3D Object Gen, then deployed to physical Snap Spectacles hardware.
-                        </p>
-                        <a
-                            class="view-btn"
-                            href="https://devpost.com/software/lloyd-draft"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            View
-                        </a>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="tag">Hack the North</span>
+                                <span class="tag">Augmented Reality</span>
+                                <span class="tag">Generative AI</span>
+                            </div>
+                            <h3>SpectacularAR — Hack the North</h3>
+                            <p class="project-summary">
+                                A voice-driven augmented-reality music visualizer created with Lens Studio, the Gemini
+                                API, Snap 3D Object Gen, and physical Snap Spectacles hardware.
+                            </p>
+
+                            <div class="evidence-grid">
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-bullseye" aria-hidden="true"></i> Project Goal</h4>
+                                    <p>Transform a user’s spoken music idea into an interactive visual experience viewed through AR hardware.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Tools Used</h4>
+                                    <p>Lens Studio, Gemini API, Snap 3D Object Gen, JavaScript, prompt design, and Snap Spectacles.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-seedling" aria-hidden="true"></i> Skills Learned</h4>
+                                    <p>Rapid prototyping, AR interaction design, API integration, hardware testing, team collaboration, and pitching.</p>
+                                </div>
+                                <div class="evidence-item">
+                                    <h4><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i> Outcome</h4>
+                                    <p>Delivered a working hackathon prototype that connected voice input, generative tools, and a wearable AR experience.</p>
+                                </div>
+                            </div>
+
+                            <div class="reflection-box">
+                                <h4>Reflection on the Learning Experience</h4>
+                                <p>
+                                    Building SpectacularAR under hackathon time pressure taught me to prioritize the
+                                    core user experience and test risky integrations early. I learned that a convincing
+                                    prototype does not need every planned feature, but it must clearly demonstrate the
+                                    central idea. I would next improve response speed, visual variety, and onboarding.
+                                </p>
+                            </div>
+
+                            <div class="project-actions">
+                                <a
+                                    class="btn btn-primary"
+                                    href="https://devpost.com/software/lloyd-draft"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                    View Devpost Project
+                                </a>
+                            </div>
+                        </div>
                     </article>
                 </div>
             </div>
         </section>
 
         <!-- SKILLS -->
-        <section class="services" id="services">
-            <div class="content">
-                <div class="title" data-aos="fade-up" data-aos-duration="1200">
-                    <span>My Skills</span>
+        <section class="skills" id="skills" aria-labelledby="skills-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Technical Skills</span>
+                    <h2 id="skills-title">A balanced toolkit for software, automation, and IT operations.</h2>
+                    <p>
+                        My skills combine programming fundamentals with the practical tools used to deploy, support,
+                        test, document, and improve technical systems.
+                    </p>
                 </div>
 
-                <div class="boxes">
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                        <div class="icon"><i class="fas fa-terminal" aria-hidden="true"></i></div>
-                        <h3 class="topic">Automation &amp; Scripting</h3>
-                        <p>PowerShell, Bash and Unix shell, API integration, JSON parsing, and scheduled automation.</p>
+                <div class="skill-grid">
+                    <article class="skill-card" data-aos="fade-up">
+                        <div class="skill-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+                        <h3>Automation and Scripting</h3>
+                        <p>PowerShell, Bash, Unix shell, reusable functions, API integration, JSON parsing, and scheduled tasks.</p>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                        <div class="icon"><i class="fas fa-cloud" aria-hidden="true"></i></div>
-                        <h3 class="topic">Cloud &amp; Endpoint Administration</h3>
-                        <p>Microsoft 365 Admin Center, Active Directory, Windows deployment, and endpoint configuration.</p>
-                    </article>
-
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                        <div class="icon"><i class="fas fa-headset" aria-hidden="true"></i></div>
-                        <h3 class="topic">ITSM &amp; Operations</h3>
-                        <p>Incident management, workflow triage, process automation, and technical documentation.</p>
-                    </article>
-
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                        <div class="icon"><i class="fas fa-code" aria-hidden="true"></i></div>
-                        <h3 class="topic">Core Languages</h3>
+                    <article class="skill-card" data-aos="fade-up" data-aos-delay="80">
+                        <div class="skill-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+                        <h3>Programming Languages</h3>
                         <p>Java, Python, SQL, C, C++, JavaScript, TypeScript, HTML, CSS, and R.</p>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
-                        <div class="icon"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
-                        <h3 class="topic">Tooling &amp; Version Control</h3>
-                        <p>Git, GitHub, Jira, Confluence, TestRail, Charles Proxy, API testing, and regression testing.</p>
+                    <article class="skill-card" data-aos="fade-up" data-aos-delay="160">
+                        <div class="skill-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div>
+                        <h3>Cloud and Endpoint Administration</h3>
+                        <p>Microsoft 365 Admin Center, Active Directory concepts, Windows deployment, and endpoint configuration.</p>
                     </article>
 
-                    <article class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200">
-                        <div class="icon"><i class="fas fa-server" aria-hidden="true"></i></div>
-                        <h3 class="topic">Systems</h3>
-                        <p>Linux, Unix, and Windows administration, environment setup, and repeatable deployment pipelines.</p>
+                    <article class="skill-card" data-aos="fade-up">
+                        <div class="skill-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
+                        <h3>ITSM and Operations</h3>
+                        <p>Incident management, queue triage, workflow design, escalation, service documentation, and process improvement.</p>
+                    </article>
+
+                    <article class="skill-card" data-aos="fade-up" data-aos-delay="80">
+                        <div class="skill-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
+                        <h3>Tooling and Quality</h3>
+                        <p>Git, GitHub, Jira, Confluence, TestRail, Charles Proxy, API testing, regression testing, and debugging.</p>
+                    </article>
+
+                    <article class="skill-card" data-aos="fade-up" data-aos-delay="160">
+                        <div class="skill-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
+                        <h3>Systems and Deployment</h3>
+                        <p>Linux, Unix, Windows administration, environment setup, command-line workflows, and repeatable deployments.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- WHY ME VIDEO -->
-        <section class="why-me" id="why-me">
-            <div class="content">
-                <div class="title" data-aos="fade-up" data-aos-duration="1200">
-                    <span>Why Me</span>
+        <!-- OVERALL REFLECTION -->
+        <section class="learning-reflection" id="reflection" aria-labelledby="reflection-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Overall Learning Reflection</span>
+                    <h2 id="reflection-title">What my work term and projects taught me.</h2>
+                    <p>
+                        My growth is not only visible in what I built. It is also visible in how I now plan, test,
+                        communicate, and evaluate technical work.
+                    </p>
                 </div>
 
-                <div class="video-wrapper" data-aos="fade-up" data-aos-duration="1500">
-                    <video controls playsinline preload="metadata">
-                        <source src="Why Me.mp4" type="video/mp4">
-                        Your browser does not support MP4 video playback.
-                    </video>
+                <div class="reflection-grid">
+                    <article class="reflection-card" data-aos="fade-up">
+                        <div class="number">1</div>
+                        <h3>Technical Growth</h3>
+                        <p>
+                            I moved from writing scripts that simply complete a task to designing solutions with
+                            validation, reusable components, clearer output, and better handling of unexpected conditions.
+                        </p>
+                    </article>
+
+                    <article class="reflection-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="number">2</div>
+                        <h3>Professional Growth</h3>
+                        <p>
+                            I learned to ask better questions, document decisions, communicate blockers early, and
+                            consider how another person will maintain or support what I create.
+                        </p>
+                    </article>
+
+                    <article class="reflection-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="number">3</div>
+                        <h3>Next Steps</h3>
+                        <p>
+                            I plan to deepen my knowledge of cloud administration, software testing, secure automation,
+                            and full-stack development while continuing to build projects with measurable user value.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME VIDEO -->
+        <section id="why-me" aria-labelledby="video-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">About Me Video</span>
+                    <h2 id="video-title">My skills, competencies, experience, and professional direction.</h2>
+                    <p>
+                        This video introduces who I am, the work I have completed, the value I bring to a team, and the
+                        areas in which I want to continue growing.
+                    </p>
+                </div>
+
+                <div class="video-grid">
+                    <figure class="video-card" data-aos="fade-right">
+                        <video controls playsinline preload="metadata" aria-describedby="video-description">
+                            <source src="Why Me.mp4" type="video/mp4">
+                            Your browser does not support MP4 video playback.
+                        </video>
+                        <figcaption class="video-caption" id="video-description">
+                            About Me video featuring Lloyd Musa’s technical skills, professional experience, project work,
+                            strengths, and career goals.
+                        </figcaption>
+                    </figure>
+
+                    <aside class="video-content-card" data-aos="fade-left">
+                        <h3>Video Content Checklist</h3>
+                        <ul class="video-checklist">
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Clear introduction: name, program, current role, and professional focus.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Specific technical skills: automation, programming, deployment, APIs, ITSM, and testing.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Evidence from work and projects rather than unsupported claims.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Communication, teamwork, leadership, problem-solving, and continuous learning.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Professional conclusion explaining the opportunities and growth areas being pursued.</span></li>
+                        </ul>
+
+                        <details class="transcript">
+                            <summary>View recommended video script</summary>
+                            <p>
+                                Hello, my name is Lloyd Musa. I am an Honours Computer Science student at York
+                                University and an IT Analyst Co-op at Metergy Solutions. My main interests are software
+                                development, enterprise automation, and designing technical solutions that make work more
+                                efficient and reliable. During my work term, I strengthened my PowerShell, Microsoft 365,
+                                API integration, ITSM, testing, and documentation skills. My projects include an Office 365
+                                deployment framework, a Lenovo warranty lookup tool, the OpsFlow service-desk workflow,
+                                and SpectacularAR, an augmented-reality project built at Hack the North. These experiences
+                                taught me to consider users, errors, maintainability, and communication—not only whether
+                                the code runs. I also bring leadership and teaching experience from mentoring lab
+                                assistants at K2i Academy. I am continuing to grow as a software developer, IT analyst,
+                                automation engineer, and software engineer, and I am excited to contribute to teams that
+                                value curiosity, collaboration, and practical problem solving. Thank you for viewing my
+                                ePortfolio.
+                            </p>
+                        </details>
+                    </aside>
                 </div>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section class="contact" id="contact">
-            <div class="content">
-                <div class="title" data-aos="fade-up" data-aos-duration="1500">
-                    <span>Contact Me</span>
-                </div>
-
-                <div class="text">
-                    <div class="topic" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200">
-                        Have a project or opportunity?
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-panel" data-aos="zoom-in">
+                    <div>
+                        <h2 id="contact-title">Let’s build something useful.</h2>
+                        <p>
+                            I welcome conversations about software development, IT operations, automation, research,
+                            co-op opportunities, and collaborative technical projects.
+                        </p>
                     </div>
-
-                    <div class="button" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="400">
-                        <button type="button" onclick="openContactForm()">Let's Chat</button>
+                    <div class="button-row">
+                        <button class="btn btn-primary" type="button" id="open-contact-form">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            Contact Me
+                        </button>
                     </div>
                 </div>
             </div>
@@ -383,86 +2126,182 @@
     </main>
 
     <footer>
-        <div class="text">
-            <span>Created by Lloyd Musa &copy; <span id="current-year"></span></span>
+        <div class="container">
+            <p>Created by Lloyd Musa &copy; <span id="current-year"></span>. Designed for clarity, accessibility, and professional presentation.</p>
         </div>
     </footer>
 
     <!-- CONTACT FORM MODAL -->
     <div
+        class="modal-overlay"
         id="contact-form-overlay"
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-form-title"
         aria-hidden="true"
     >
-        <div class="contact-form">
-            <h2 id="contact-form-title">Contact Me</h2>
+        <div class="contact-form" role="document">
+            <div class="form-head">
+                <div>
+                    <h2 id="contact-form-title">Send a Message</h2>
+                    <p>Complete the form and your email application will open with the message prepared.</p>
+                </div>
+                <button class="close-modal" id="close-contact-form" type="button" aria-label="Close contact form">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
 
             <form id="contactForm">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" autocomplete="name" required>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
+                    </div>
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" autocomplete="email" required>
+                    <div class="field">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
 
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel">
+                    <div class="field">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel">
+                    </div>
 
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required>
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" value="ePortfolio inquiry" required>
+                    </div>
 
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                    <div class="field full">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                </div>
 
                 <div class="form-actions">
-                    <button type="submit">Send Message</button>
-                    <button type="button" onclick="closeContactForm()">Close</button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        Prepare Email
+                    </button>
+                    <button class="btn btn-light" id="cancel-contact-form" type="button">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- AOS animation script -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         "use strict";
 
         if (window.AOS) {
-            AOS.init({ offset: 0, once: true });
+            AOS.init({
+                offset: 70,
+                duration: 650,
+                easing: "ease-out-cubic",
+                once: true
+            });
         }
 
-        const dropdown = document.getElementById("mobile-menu");
-        const menuButton = document.querySelector(".hamburg");
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileNav = document.getElementById("mobile-nav");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const sections = document.querySelectorAll("main section[id]");
+        const scrollProgress = document.getElementById("scroll-progress");
+        const backToTop = document.getElementById("back-to-top");
         const contactOverlay = document.getElementById("contact-form-overlay");
+        const openContactButton = document.getElementById("open-contact-form");
+        const closeContactButton = document.getElementById("close-contact-form");
+        const cancelContactButton = document.getElementById("cancel-contact-form");
         const contactForm = document.getElementById("contactForm");
         const nameInput = document.getElementById("name");
+        const typewriterText = document.querySelector(".typewriter-text");
+        let lastFocusedElement = null;
 
-        function toggleDropdown() {
-            const isOpen = dropdown.classList.toggle("open");
-            dropdown.setAttribute("aria-hidden", String(!isOpen));
-            menuButton.setAttribute("aria-expanded", String(isOpen));
+        function setMobileMenu(open) {
+            mobileNav.classList.toggle("open", open);
+            mobileNav.setAttribute("aria-hidden", String(!open));
+            menuToggle.setAttribute("aria-expanded", String(open));
+            menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+            menuToggle.innerHTML = open
+                ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+                : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
         }
 
-        function closeDropdown() {
-            dropdown.classList.remove("open");
-            dropdown.setAttribute("aria-hidden", "true");
-            menuButton.setAttribute("aria-expanded", "false");
+        menuToggle.addEventListener("click", () => {
+            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+            setMobileMenu(!isOpen);
+        });
+
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => setMobileMenu(false));
+        });
+
+        document.addEventListener("click", (event) => {
+            const clickedInsideMenu = mobileNav.contains(event.target) || menuToggle.contains(event.target);
+            if (!clickedInsideMenu) {
+                setMobileMenu(false);
+            }
+        });
+
+        function updateScrollUI() {
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const percentage = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
+            scrollProgress.style.width = `${Math.min(100, Math.max(0, percentage))}%`;
+            backToTop.classList.toggle("visible", window.scrollY > 650);
         }
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        window.addEventListener("resize", updateScrollUI);
+        updateScrollUI();
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        const activeSectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+
+                    const id = entry.target.getAttribute("id");
+                    navLinks.forEach((link) => {
+                        link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+                    });
+                });
+            },
+            {
+                rootMargin: "-35% 0px -55% 0px",
+                threshold: 0
+            }
+        );
+
+        sections.forEach((section) => activeSectionObserver.observe(section));
 
         function openContactForm() {
+            lastFocusedElement = document.activeElement;
             contactOverlay.classList.add("open");
             contactOverlay.setAttribute("aria-hidden", "false");
             document.body.classList.add("modal-open");
-            window.setTimeout(() => nameInput.focus(), 50);
+            window.setTimeout(() => nameInput.focus(), 40);
         }
 
         function closeContactForm() {
             contactOverlay.classList.remove("open");
             contactOverlay.setAttribute("aria-hidden", "true");
             document.body.classList.remove("modal-open");
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
+
+        openContactButton.addEventListener("click", openContactForm);
+        closeContactButton.addEventListener("click", closeContactForm);
+        cancelContactButton.addEventListener("click", closeContactForm);
 
         contactOverlay.addEventListener("click", (event) => {
             if (event.target === contactOverlay) {
@@ -472,8 +2311,24 @@
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape") {
-                closeDropdown();
+                setMobileMenu(false);
                 closeContactForm();
+            }
+
+            if (event.key === "Tab" && contactOverlay.classList.contains("open")) {
+                const focusableElements = contactOverlay.querySelectorAll(
+                    'button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (event.shiftKey && document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                } else if (!event.shiftKey && document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
             }
         });
 
@@ -484,7 +2339,7 @@
             const senderName = String(formData.get("name") || "").trim();
             const senderEmail = String(formData.get("email") || "").trim();
             const senderPhone = String(formData.get("phone") || "").trim();
-            const emailSubject = String(formData.get("subject") || "Portfolio inquiry").trim();
+            const emailSubject = String(formData.get("subject") || "ePortfolio inquiry").trim();
             const emailMessage = String(formData.get("message") || "").trim();
 
             const body = [
@@ -503,7 +2358,6 @@
             window.location.href = mailtoUrl;
         });
 
-        const typewriterText = document.querySelector(".typewriter-text");
         const typewriterWords = [
             "a Software Developer",
             "an IT Analyst",
@@ -512,22 +2366,19 @@
         ];
 
         let wordIndex = 0;
-        let characterIndex = 0;
-        let deleting = false;
+        let characterIndex = typewriterWords[0].length;
+        let deleting = true;
 
         function runTypewriter() {
+            const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (reduceMotion) {
+                typewriterText.textContent = typewriterWords[0];
+                return;
+            }
+
             const currentWord = typewriterWords[wordIndex];
 
-            if (!deleting) {
-                characterIndex += 1;
-                typewriterText.textContent = currentWord.slice(0, characterIndex);
-
-                if (characterIndex === currentWord.length) {
-                    deleting = true;
-                    window.setTimeout(runTypewriter, 1200);
-                    return;
-                }
-            } else {
+            if (deleting) {
                 characterIndex -= 1;
                 typewriterText.textContent = currentWord.slice(0, characterIndex);
 
@@ -535,13 +2386,22 @@
                     deleting = false;
                     wordIndex = (wordIndex + 1) % typewriterWords.length;
                 }
+            } else {
+                characterIndex += 1;
+                typewriterText.textContent = typewriterWords[wordIndex].slice(0, characterIndex);
+
+                if (characterIndex === typewriterWords[wordIndex].length) {
+                    deleting = true;
+                    window.setTimeout(runTypewriter, 1350);
+                    return;
+                }
             }
 
-            window.setTimeout(runTypewriter, deleting ? 55 : 95);
+            window.setTimeout(runTypewriter, deleting ? 46 : 78);
         }
 
         document.getElementById("current-year").textContent = new Date().getFullYear();
-        runTypewriter();
+        window.setTimeout(runTypewriter, 1200);
     </script>
 </body>
 </html>
