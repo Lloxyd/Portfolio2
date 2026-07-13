@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    style.css
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    https://unpkg.com
+    https://cdnjs.cloudflare.com
+    <title>Lloyd Musa | Technical ePortfolio</title>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <span>Lloyd</span>
+            </div>
+            <div class="links">
+                #home" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Home</a>
+                #about" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">About</a>
+                #projects" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Projects</a>
+                #services" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">Skills</a>
+                #contact" class="nav-link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Contact</a>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="toggleDropdown()"></i>
+        </div>
+
+        <div class="dropdown">
+            <div class="links">
+                #home" class="nav-link">Home</a>
+                #about" class="nav-link">About</a>
+                #projects" class="nav-link">Projects</a>
+                #services" class="nav-link">Skills</a>
+                #contact" class="nav-link">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="closeDropdown()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                Formal.jpeg" alt="Lloyd Musa">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">
+                    Hey, I'm <span>Lloyd</span>
+                </h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900">
+                    I'm an
+                    <span class="typewriter-text"></span>
+                    <label for=""></label>
+                </div>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">
+                    Computer Science student at York University and IT Support Analyst at Metergy Solutions.
+                    I specialize in PowerShell automation, Microsoft 365 deployment, and enterprise systems
+                    integration — turning repetitive manual work into reliable, scalable scripts.
+                </p>
+                <div class="social-links">
+                    https://github.com/Lloxyd" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    lloydmusa/" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </div>
+
+                <!-- DOWNLOADABLE RESUME BUTTON -->
+                <div class="button" data-aos="zoom-in-right" data-aos-duration="1500" data-aos-delay="800">
+                    Lloyd_s_Resume__Metergy_.pdf" download>
+                        <button class="cv-btn">📥 Download CV</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="content">
+            <div class="title" data-aos="fade-up" data-aos-duration="1200"><span>About Me</span></div>
+            <div class="about-wrapper">
+                <div class="about-text" data-aos="fade-right" data-aos-duration="1500">
+                    <p>
+                        I'm an Honours B.Sc. Computer Science student at York University (expected 2027),
+                        currently working as an IT Support Analyst (Co-op) at Metergy Solutions. My focus is
+                        enterprise automation: I build defensive PowerShell scripts, automate Microsoft 365
+                        deployments, integrate vendor APIs, and design ITSM workflows that reduce manual
+                        overhead and improve reliability across Windows environments.
+                    </p>
+                    <p style="margin-top:15px;">
+                        Previously, I mentored 8 lab assistants at K2i Academy (Lassonde School of Engineering),
+                        delivering STEM instruction aligned with the UN Sustainable Development Goals. I love
+                        solving complex problems and documenting repeatable solutions for my team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+        <div class="content">
+            <div class="title" data-aos="fade-up" data-aos-duration="1200"><span>My Projects</span></div>
+            <div class="boxes">
+
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="project-img">
+                        project-office365.png" alt="Office 365 Deployment Automation">
+                    </div>
+                    <div class="topic">Office 365 Deployment Automation</div>
+                    <p>Modular PowerShell framework that silently downloads, installs, and validates standardized Microsoft 365 apps across enterprise Windows endpoints.</p>
+                    <button class="view-btn" data-link="https://github.com/Lloxyd">View</button>
+                </div>
+
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                    <div class="project-img">
+                        project-lenovo.png" alt="Lenovo Warranty Lookup">
+                    </div>
+                    <div class="topic">Lenovo Warranty Lookup</div>
+                    <p>PowerShell tool that queries the Lenovo warranty API by serial number, parses JSON responses, and exports structured CSV records for asset compliance.</p>
+                    <button class="view-btn" data-link="https://github.com/Lloxyd">View</button>
+                </div>
+
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                    <div class="project-img">
+                        project-itsm.png" alt="ITSM Workboard">
+                    </div>
+                    <div class="topic">ITSM Workboard</div>
+                    <p>Service-desk triage board that organizes incident queues, prioritizes ticket tiers, and documents handoffs to improve backlog visibility and response times.</p>
+                    <button class="view-btn" data-link="https://github.com/Lloxyd">View</button>
+                </div>
+
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
+                    <div class="project-img">
+                        project-spectacular.png" alt="SpectaculAR">
+                    </div>
+                    <div class="topic">SpectaculAR — Hack The North</div>
+                    <p>Voice-driven AR music visualizer built with Lens Studio, the Gemini API, and Snap 3D Object Gen — deployed to physical Snap Spectacles hardware.</p>
+                    <button class="view-btn" data-link="https://devpost.com/software/lloyd-draft">View</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="services" id="services">
+        <div class="content">
+            <div class="title" data-aos="fade-up" data-aos-duration="1200"><span>My Skills</span></div>
+            <div class="boxes">
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="icon"><i class="fas fa-terminal"></i></div>
+                    <div class="topic">Automation &amp; Scripting</div>
+                    <p>PowerShell, Bash/Unix shell, API integration, JSON parsing, cron/systemd scheduling.</p>
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                    <div class="icon"><i class="fas fa-cloud"></i></div>
+                    <div class="topic">Cloud &amp; Endpoint Admin</div>
+                    <p>Microsoft 365 Admin Center, Active Directory, Windows deployment, endpoint configuration.</p>
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <div class="topic">ITSM &amp; Operations</div>
+                    <p>Incident management, workflow triage mapping, process automation, technical documentation.</p>
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
+                    <div class="icon"><i class="fas fa-code"></i></div>
+                    <div class="topic">Core Languages</div>
+                    <p>Java, Python, SQL, C, C++, JavaScript, TypeScript, HTML/CSS, R.</p>
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1000">
+                    <div class="icon"><i class="fas fa-code-branch"></i></div>
+                    <div class="topic">Tooling &amp; Version Control</div>
+                    <p>Git/GitHub, Jira, Confluence, TestRail, Charles Proxy, API &amp; regression testing.</p>
+                </div>
+                <div class="box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1200">
+                    <div class="icon"><i class="fas fa-server"></i></div>
+                    <div class="topic">Systems</div>
+                    <p>Linux/UNIX &amp; Windows administration, environment setup, repeatable pipelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="content">
+            <div class="title" data-aos="fade-up" data-aos-duration="1500"><span>Contact Me</span></div>
+            <div class="text">
+                <div class="topic" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="200">Have any Projects?</div>
+                <div class="button" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="400">
+                    <button onclick="openContactForm()">Let's Chat</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="text">
+            <span>Created By Lloyd Musa</span>
+        </div>
+    </footer>
+
+    https://unpkg.com
+    <script> AOS.init({ offset: 0 }); </script>
+    script.js
+
+    <div id="contact-form-overlay">
+        <div class="contact-form">
+            <h2>Contact Me</h2>
+            <form id="contactForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+                <button type="button" onclick="closeContactForm()">Close</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
