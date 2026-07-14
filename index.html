@@ -731,6 +731,91 @@
             padding-left: 1.2rem;
         }
 
+        /* Goals */
+        .goals {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(85, 214, 190, 0.13), transparent 27%),
+                radial-gradient(circle at 88% 82%, rgba(29, 95, 209, 0.12), transparent 30%),
+                var(--page);
+        }
+
+        .goal-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .goal-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .goal-card::after {
+            position: absolute;
+            right: -44px;
+            bottom: -54px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(29, 95, 209, 0.055);
+            content: "";
+        }
+
+        .goal-card:hover {
+            border-color: #bdcce0;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .goal-card-head {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-icon {
+            display: grid;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--surface-soft), #e8f9f5);
+            color: var(--primary);
+            font-size: 1.15rem;
+            place-items: center;
+        }
+
+        .goal-number {
+            color: #b6c2d2;
+            font-size: 0.84rem;
+            font-weight: 950;
+            letter-spacing: 0.08em;
+        }
+
+        .goal-card h3 {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.55rem;
+            color: var(--surface-dark);
+            font-size: 1.12rem;
+        }
+
+        .goal-card p {
+            position: relative;
+            z-index: 1;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
         /* Projects */
         .projects {
             background:
@@ -1298,6 +1383,7 @@
                 max-height: 430px;
             }
 
+            .goal-grid,
             .skill-grid,
             .reflection-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1319,6 +1405,7 @@
             }
 
             .snapshot-grid,
+            .goal-grid,
             .skill-grid,
             .reflection-grid,
             .evidence-grid,
@@ -1413,6 +1500,7 @@
                 <a class="nav-link active" href="#home">Home</a>
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#experience">Experience</a>
+                <a class="nav-link" href="#goals">Goals</a>
                 <a class="nav-link" href="#projects">Projects</a>
                 <a class="nav-link" href="#skills">Skills</a>
                 <a class="nav-link" href="#reflection">Reflection</a>
@@ -1435,6 +1523,7 @@
                 <a class="nav-link" href="#home">Home</a>
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#experience">Experience</a>
+                <a class="nav-link" href="#goals">Goals</a>
                 <a class="nav-link" href="#projects">Projects</a>
                 <a class="nav-link" href="#skills">Skills</a>
                 <a class="nav-link" href="#reflection">Reflection</a>
@@ -1666,6 +1755,64 @@
                                 <li>Strengthened leadership, teamwork, facilitation, and professional communication skills.</li>
                             </ul>
                         </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- GOALS -->
+        <section class="goals" id="goals" aria-labelledby="goals-title">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <span class="section-kicker">Professional Goals</span>
+                    <h2 id="goals-title">Goals that shape how I design, collaborate, and create value.</h2>
+                    <p>
+                        These objectives reflect how I plan to grow beyond completing technical tasks and become a more
+                        security-conscious, systems-oriented, and business-aware technology professional.
+                    </p>
+                </div>
+
+                <div class="goal-grid">
+                    <article class="goal-card" data-aos="fade-up">
+                        <div class="goal-card-head">
+                            <div class="goal-icon">
+                                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                            </div>
+                            <span class="goal-number">01</span>
+                        </div>
+                        <h3>Security-First Engineering</h3>
+                        <p>
+                            Embed secure coding, threat modeling, and risk assessment into design decisions from the
+                            outset rather than treating security as a final review.
+                        </p>
+                    </article>
+
+                    <article class="goal-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="goal-card-head">
+                            <div class="goal-icon">
+                                <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+                            </div>
+                            <span class="goal-number">02</span>
+                        </div>
+                        <h3>Systems-Level Thinking</h3>
+                        <p>
+                            Evaluate how components, APIs, and architectural decisions affect scalability, reliability,
+                            performance, and maintainability across the broader system.
+                        </p>
+                    </article>
+
+                    <article class="goal-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="goal-card-head">
+                            <div class="goal-icon">
+                                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                            </div>
+                            <span class="goal-number">03</span>
+                        </div>
+                        <h3>Business and Cross-Functional Literacy</h3>
+                        <p>
+                            Learn from non-technical teams and business cases to connect engineering decisions with
+                            operational priorities, stakeholder needs, and measurable organizational value.
+                        </p>
                     </article>
                 </div>
             </div>
