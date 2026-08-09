@@ -357,6 +357,8 @@
 
         /* Hero */
         .hero {
+            position: relative;
+            isolation: isolate;
             display: grid;
             min-height: calc(100vh - var(--nav-height));
             overflow: hidden;
@@ -370,6 +372,8 @@
 
         .hero::after {
             position: absolute;
+            z-index: 0;
+            pointer-events: none;
             inset: auto -8rem -13rem auto;
             width: 28rem;
             height: 28rem;
@@ -520,12 +524,16 @@
 
         /* Snapshot */
         .snapshot {
-            z-index: 3;
-            margin-top: -2.2rem;
-            padding: 0 0 2rem;
+            position: relative;
+            z-index: 6;
+            margin-top: 0;
+            padding: 2rem 0 2.5rem;
+            background: var(--page);
         }
 
         .snapshot-grid {
+            position: relative;
+            z-index: 7;
             display: grid;
             overflow: hidden;
             border: 1px solid var(--border);
@@ -541,6 +549,7 @@
             gap: 0.85rem;
             min-height: 126px;
             padding: 1.35rem;
+            background: #ffffff;
         }
 
         .snapshot-card + .snapshot-card {
@@ -729,91 +738,6 @@
             gap: 0.45rem;
             color: var(--muted);
             padding-left: 1.2rem;
-        }
-
-        /* Goals */
-        .goals {
-            background:
-                radial-gradient(circle at 12% 18%, rgba(85, 214, 190, 0.13), transparent 27%),
-                radial-gradient(circle at 88% 82%, rgba(29, 95, 209, 0.12), transparent 30%),
-                var(--page);
-        }
-
-        .goal-grid {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .goal-card {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: #ffffff;
-            box-shadow: var(--shadow-sm);
-            padding: 1.5rem;
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-        }
-
-        .goal-card::after {
-            position: absolute;
-            right: -44px;
-            bottom: -54px;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: rgba(29, 95, 209, 0.055);
-            content: "";
-        }
-
-        .goal-card:hover {
-            border-color: #bdcce0;
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
-        }
-
-        .goal-card-head {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .goal-icon {
-            display: grid;
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--surface-soft), #e8f9f5);
-            color: var(--primary);
-            font-size: 1.15rem;
-            place-items: center;
-        }
-
-        .goal-number {
-            color: #b6c2d2;
-            font-size: 0.84rem;
-            font-weight: 950;
-            letter-spacing: 0.08em;
-        }
-
-        .goal-card h3 {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 0.55rem;
-            color: var(--surface-dark);
-            font-size: 1.12rem;
-        }
-
-        .goal-card p {
-            position: relative;
-            z-index: 1;
-            color: var(--muted);
-            font-size: 0.92rem;
         }
 
         /* Projects */
@@ -1383,7 +1307,6 @@
                 max-height: 430px;
             }
 
-            .goal-grid,
             .skill-grid,
             .reflection-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1405,7 +1328,6 @@
             }
 
             .snapshot-grid,
-            .goal-grid,
             .skill-grid,
             .reflection-grid,
             .evidence-grid,
@@ -1484,6 +1406,7 @@
             }
         }
     </style>
+    <!-- Rubric-aligned revision: 2026-08-09 -->
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -1500,7 +1423,6 @@
                 <a class="nav-link active" href="#home">Home</a>
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#experience">Experience</a>
-                <a class="nav-link" href="#goals">Goals</a>
                 <a class="nav-link" href="#projects">Projects</a>
                 <a class="nav-link" href="#skills">Skills</a>
                 <a class="nav-link" href="#reflection">Reflection</a>
@@ -1523,7 +1445,6 @@
                 <a class="nav-link" href="#home">Home</a>
                 <a class="nav-link" href="#about">About</a>
                 <a class="nav-link" href="#experience">Experience</a>
-                <a class="nav-link" href="#goals">Goals</a>
                 <a class="nav-link" href="#projects">Projects</a>
                 <a class="nav-link" href="#skills">Skills</a>
                 <a class="nav-link" href="#reflection">Reflection</a>
@@ -1616,21 +1537,21 @@
                     <div class="snapshot-icon"><i class="fa-solid fa-building" aria-hidden="true"></i></div>
                     <div>
                         <strong>Current Role</strong>
-                        <p>IT Analyst Co-op at Metergy Solutions, focused on automation and enterprise support.</p>
+                        <p>IT Analyst Co-op at Metergy Solutions, focused on PowerShell automation, endpoint support, documentation, and repeatable deployment workflows.</p>
                     </div>
                 </div>
                 <div class="snapshot-card">
                     <div class="snapshot-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
                     <div>
                         <strong>Education</strong>
-                        <p>Honours B.Sc. Computer Science at York University, expected graduation in 2027.</p>
+                        <p>Honours B.Sc. Computer Science at York University, with coursework and projects connecting software, systems, and professional practice.</p>
                     </div>
                 </div>
                 <div class="snapshot-card">
                     <div class="snapshot-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
                     <div>
-                        <strong>Core Strength</strong>
-                        <p>Turning repetitive technical processes into documented, reusable, and reliable solutions.</p>
+                        <strong>Core Strengths</strong>
+                        <p>Automation, API integration, testing, service-desk thinking, clear documentation, communication, and reflective problem solving.</p>
                     </div>
                 </div>
             </div>
@@ -1755,64 +1676,6 @@
                                 <li>Strengthened leadership, teamwork, facilitation, and professional communication skills.</li>
                             </ul>
                         </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- GOALS -->
-        <section class="goals" id="goals" aria-labelledby="goals-title">
-            <div class="container">
-                <div class="section-heading" data-aos="fade-up">
-                    <span class="section-kicker">Professional Goals</span>
-                    <h2 id="goals-title">Goals that shape how I design, collaborate, and create value.</h2>
-                    <p>
-                        These objectives reflect how I plan to grow beyond completing technical tasks and become a more
-                        security-conscious, systems-oriented, and business-aware technology professional.
-                    </p>
-                </div>
-
-                <div class="goal-grid">
-                    <article class="goal-card" data-aos="fade-up">
-                        <div class="goal-card-head">
-                            <div class="goal-icon">
-                                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-                            </div>
-                            <span class="goal-number">01</span>
-                        </div>
-                        <h3>Security-First Engineering</h3>
-                        <p>
-                            Embed secure coding, threat modeling, and risk assessment into design decisions from the
-                            outset rather than treating security as a final review.
-                        </p>
-                    </article>
-
-                    <article class="goal-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="goal-card-head">
-                            <div class="goal-icon">
-                                <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
-                            </div>
-                            <span class="goal-number">02</span>
-                        </div>
-                        <h3>Systems-Level Thinking</h3>
-                        <p>
-                            Evaluate how components, APIs, and architectural decisions affect scalability, reliability,
-                            performance, and maintainability across the broader system.
-                        </p>
-                    </article>
-
-                    <article class="goal-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="goal-card-head">
-                            <div class="goal-icon">
-                                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                            </div>
-                            <span class="goal-number">03</span>
-                        </div>
-                        <h3>Business and Cross-Functional Literacy</h3>
-                        <p>
-                            Learn from non-technical teams and business cases to connect engineering decisions with
-                            operational priorities, stakeholder needs, and measurable organizational value.
-                        </p>
                     </article>
                 </div>
             </div>
@@ -2165,28 +2028,49 @@
                 <div class="reflection-grid">
                     <article class="reflection-card" data-aos="fade-up">
                         <div class="number">1</div>
-                        <h3>Technical Growth</h3>
+                        <h3>How My Technical Thinking Changed</h3>
                         <p>
-                            I moved from writing scripts that simply complete a task to designing solutions with
-                            validation, reusable components, clearer output, and better handling of unexpected conditions.
+                            At the beginning of my work term, I often judged a solution by whether it completed the task.
+                            Through deployment automation, API work, testing, and support workflows, I learned that a
+                            professional solution must also be reliable, understandable, repeatable, and maintainable.
+                            I now build with validation, reusable components, clearer output, documented assumptions,
+                            and failure cases in mind rather than treating them as afterthoughts.
                         </p>
                     </article>
 
                     <article class="reflection-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="number">2</div>
-                        <h3>Professional Growth</h3>
+                        <h3>How I Grew as a Professional</h3>
                         <p>
-                            I learned to ask better questions, document decisions, communicate blockers early, and
-                            consider how another person will maintain or support what I create.
+                            Working with real users and operational constraints taught me that communication is part of
+                            technical quality. I became more deliberate about asking clarifying questions, documenting
+                            decisions, communicating blockers early, accepting feedback, and explaining technical work in
+                            language that other people can act on. I also became more aware that the best solution is not
+                            always the most complex one; it is the one that solves the user's problem reliably and can be
+                            supported by the team after I hand it off.
                         </p>
                     </article>
 
                     <article class="reflection-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="number">3</div>
-                        <h3>Next Steps</h3>
+                        <h3>What I Would Improve</h3>
                         <p>
-                            I plan to deepen my knowledge of cloud administration, software testing, secure automation,
-                            and full-stack development while continuing to build projects with measurable user value.
+                            The projects in this portfolio also exposed areas I still need to strengthen. I want to improve
+                            how I measure impact, design automated tests earlier, anticipate edge cases before deployment,
+                            and communicate progress more consistently during longer tasks. Recognizing these gaps has made
+                            reflection a practical part of my workflow rather than something I do only after a project ends.
+                        </p>
+                    </article>
+
+                    <article class="reflection-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="number">4</div>
+                        <h3>How I Will Apply the Learning</h3>
+                        <p>
+                            Going forward, I will apply these lessons by setting clearer success criteria before I build,
+                            validating my work with users and test cases, documenting decisions as I go, and reviewing both
+                            the technical result and the process that produced it. My next development priorities are cloud
+                            administration, secure automation, software testing, and full-stack development, with an emphasis
+                            on projects that create measurable value for users and organizations.
                         </p>
                     </article>
                 </div>
@@ -2200,8 +2084,8 @@
                     <span class="section-kicker">About Me Video</span>
                     <h2 id="video-title">My skills, competencies, experience, and professional direction.</h2>
                     <p>
-                        This video introduces who I am, the work I have completed, the value I bring to a team, and the
-                        areas in which I want to continue growing.
+                        This 3–4 minute presentation combines on-camera delivery, slides, project graphics/illustrations,
+                        and voice-over narration to demonstrate my skills, evidence of work, reflection, and professional direction.
                     </p>
                 </div>
 
@@ -2212,37 +2096,39 @@
                             Your browser does not support MP4 video playback.
                         </video>
                         <figcaption class="video-caption" id="video-description">
-                            About Me video featuring Lloyd Musa’s technical skills, professional experience, project work,
-                            strengths, and career goals.
+                            About Me ePortfolio video combining on-camera presentation, slides, project graphics,
+                            voice-over narration, evidence of work, reflection, and professional goals.
                         </figcaption>
                     </figure>
 
                     <aside class="video-content-card" data-aos="fade-left">
-                        <h3>Video Content Checklist</h3>
+                        <h3>Rubric-Aligned Video Checklist</h3>
                         <ul class="video-checklist">
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Clear introduction: name, program, current role, and professional focus.</span></li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Specific technical skills: automation, programming, deployment, APIs, ITSM, and testing.</span></li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Evidence from work and projects rather than unsupported claims.</span></li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Communication, teamwork, leadership, problem-solving, and continuous learning.</span></li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Professional conclusion explaining the opportunities and growth areas being pursued.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>On camera:</strong> I appear on screen for the opening, transitions, and conclusion so the presentation is clearly personal and professional.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Slides:</strong> Clean title and project slides organize the presentation and reinforce the key points without overcrowding the screen.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Graphics / illustrations:</strong> Project screenshots, diagrams, icons, and portfolio visuals provide evidence of the work being discussed.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Voice-over:</strong> Narration continues over the slides and project visuals to explain the context, contribution, outcome, and learning.</span></li>
+                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Reflection:</strong> The video explains not only what I completed, but what I learned, what I would improve, and how the experience changed my professional approach.</span></li>
                         </ul>
 
+                        <p class="video-note">
+                            The final recording will explicitly highlight my strongest skills: PowerShell automation, Microsoft 365 administration, API integration, testing, documentation, communication, and reflective problem solving. The public video link will be added after recording.
+                        </p>
+
                         <details class="transcript">
-                            <summary>View recommended video script</summary>
+                            <summary>View recommended 3–4 minute video script</summary>
                             <p>
-                                Hello, my name is Lloyd Musa. I am an Honours Computer Science student at York
-                                University and an IT Analyst Co-op at Metergy Solutions. My main interests are software
-                                development, enterprise automation, and designing technical solutions that make work more
-                                efficient and reliable. During my work term, I strengthened my PowerShell, Microsoft 365,
-                                API integration, ITSM, testing, and documentation skills. My projects include an Office 365
-                                deployment framework, a Lenovo warranty lookup tool, the OpsFlow service-desk workflow,
-                                and SpectacularAR, an augmented-reality project built at Hack the North. These experiences
-                                taught me to consider users, errors, maintainability, and communication—not only whether
-                                the code runs. I also bring leadership and teaching experience from mentoring lab
-                                assistants at K2i Academy. I am continuing to grow as a software developer, IT analyst,
-                                automation engineer, and software engineer, and I am excited to contribute to teams that
-                                value curiosity, collaboration, and practical problem solving. Thank you for viewing my
-                                ePortfolio.
+                                <strong>0:00–0:25 — On camera.</strong> Hello, my name is Lloyd Musa. I am an Honours Computer Science student at York University and an IT Analyst Co-op at Metergy Solutions. My professional interests are software development, enterprise automation, systems integration, and creating technical solutions that make work more efficient and reliable. In this ePortfolio, I want to show not only what I built, but how these experiences changed the way I approach technical work.<br><br>
+
+                                <strong>0:25–1:05 — Voice-over with title and skills slides.</strong> During my work term, I strengthened my skills in PowerShell, Microsoft 365 administration, API integration, IT service management, testing, documentation, and troubleshooting. One of the biggest changes in my thinking was moving beyond asking, “Does the code work?” I now ask whether a solution is repeatable, maintainable, understandable to another person, and resilient when something unexpected happens.<br><br>
+
+                                <strong>1:05–2:05 — Voice-over with project screenshots and graphics.</strong> My Office 365 deployment project gave me experience building a more consistent and automated installation process. The Lenovo warranty lookup project strengthened my ability to work with external APIs, validate responses, and transform returned data into useful output. OpsFlow taught me that process design and clear ownership can be just as important as the underlying technology. SpectacularAR, which I helped build at Hack the North, challenged me to prototype quickly, test risky integrations early, and focus on the core user experience under time pressure.<br><br>
+
+                                <strong>2:05–2:45 — On camera with supporting reflection slide.</strong> Across these projects, I also developed professionally. I became better at asking clarifying questions, documenting decisions, communicating blockers early, receiving feedback, and explaining technical work in a way that other people can use. I also learned that the most impressive technical solution is not always the best solution. A strong solution solves the real problem, is reliable, and can be supported after it is handed off.<br><br>
+
+                                <strong>2:45–3:20 — Voice-over with “Next Steps” slide.</strong> I still have areas I want to improve. I want to measure impact more clearly, build automated testing earlier in the development process, anticipate edge cases before deployment, and continue deepening my knowledge in cloud administration, secure automation, software testing, and full-stack development. My goal is to keep building projects that demonstrate measurable value rather than only technical complexity.<br><br>
+
+                                <strong>3:20–3:35 — On camera.</strong> Overall, this work term helped me become a more reflective and professional problem solver. I am leaving it with stronger technical skills, but also with a better understanding of communication, maintainability, user needs, and continuous improvement. Thank you for viewing my ePortfolio.
                             </p>
                         </details>
                     </aside>
